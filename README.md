@@ -55,11 +55,30 @@ Post-earthquake structural assessment requires reasoning across multiple visual 
 
 For each input image, the moderator first calls the **scene-level agent** to determine whether the image is structural-, object-, or pixel-level. The predicted scale then determines which specialist agents are appropriate:
 
-| Spatial scale | Selected assessment tasks |
-|---|---|
-| **Structural level** | Damage state, Collapse mode |
-| **Object level** | Damage state, Spalling, Component type, Damage level |
-| **Pixel level** | Damage state, Spalling, Damage level, Damage type |
+<div align="center">
+<table>
+  <thead>
+    <tr>
+      <th align="center">Spatial scale</th>
+      <th align="center">Selected assessment tasks</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td align="center"><strong>Structural level</strong></td>
+      <td align="center">Damage state, Collapse mode</td>
+    </tr>
+    <tr>
+      <td align="center"><strong>Object level</strong></td>
+      <td align="center">Damage state, Spalling, Component type, Damage level</td>
+    </tr>
+    <tr>
+      <td align="center"><strong>Pixel level</strong></td>
+      <td align="center">Damage state, Spalling, Damage level, Damage type</td>
+    </tr>
+  </tbody>
+</table>
+</div>
 
 The resulting labels and confidence scores are stored as **structured evidence records**. For multi-image inputs, each image is processed independently through the single-image pipeline. The image-level reports and evidence records are then integrated by a summary agent into one site-level assessment, preserving the source image associated with each finding.
 
@@ -99,15 +118,62 @@ The generated reports combine visible image evidence with structured specialist-
 
 At the perception layer, SeismicAgent is compared with **SDA-Chat**, which fine-tunes a single multimodal VQA model to perform both visual recognition and language generation. SeismicAgent instead assigns visual recognition to specialist ViT agents and reserves the LLM for orchestration and report synthesis.
 
-| Shared assessment task | SeismicAgent (%) | SDA-Chat (%) | Difference (pp) |
-|---|---:|---:|---:|
-| Damage state | **86.60** | 81.24 | **+5.36** |
-| Spalling condition | **84.70** | 78.36 | **+6.34** |
-| Collapse mode | 79.00 | **82.32** | −3.32 |
-| Component type | **88.30** | 86.01 | **+2.29** |
-| Damage level | 71.90 | **73.86** | −1.96 |
-| Damage type | **66.90** | 34.58 | **+32.32** |
-| **Average on six common tasks** | **79.57** | 72.73 | **+6.84** |
+<div align="center">
+<table>
+  <thead>
+    <tr>
+      <th align="center">Shared assessment task</th>
+      <th align="center">SeismicAgent (%)</th>
+      <th align="center">SDA-Chat (%)</th>
+      <th align="center">Difference (pp)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td align="center">Damage state</td>
+      <td align="center"><strong>86.60</strong></td>
+      <td align="center">81.24</td>
+      <td align="center"><strong>+5.36</strong></td>
+    </tr>
+    <tr>
+      <td align="center">Spalling condition</td>
+      <td align="center"><strong>84.70</strong></td>
+      <td align="center">78.36</td>
+      <td align="center"><strong>+6.34</strong></td>
+    </tr>
+    <tr>
+      <td align="center">Collapse mode</td>
+      <td align="center">79.00</td>
+      <td align="center"><strong>82.32</strong></td>
+      <td align="center">−3.32</td>
+    </tr>
+    <tr>
+      <td align="center">Component type</td>
+      <td align="center"><strong>88.30</strong></td>
+      <td align="center">86.01</td>
+      <td align="center"><strong>+2.29</strong></td>
+    </tr>
+    <tr>
+      <td align="center">Damage level</td>
+      <td align="center">71.90</td>
+      <td align="center"><strong>73.86</strong></td>
+      <td align="center">−1.96</td>
+    </tr>
+    <tr>
+      <td align="center">Damage type</td>
+      <td align="center"><strong>66.90</strong></td>
+      <td align="center">34.58</td>
+      <td align="center"><strong>+32.32</strong></td>
+    </tr>
+    <tr>
+      <td align="center"><strong>Average on six common tasks</strong></td>
+      <td align="center"><strong>79.57</strong></td>
+      <td align="center">72.73</td>
+      <td align="center"><strong>+6.84</strong></td>
+    </tr>
+  </tbody>
+</table>
+</div>
 
 > **SeismicAgent improves the average accuracy on the six common tasks from 72.73% to 79.57%. The largest gain occurs in damage-type recognition, where accuracy increases from 34.58% to 66.90%.**
 
@@ -115,12 +181,44 @@ The comparison should be interpreted with the dataset protocols in mind: SDA-Cha
 
 ### Report-Level Comparison with Direct MLLMs
 
-| Evaluation setting | Direct MLLM accuracy | SeismicAgent accuracy | Hallucination reduction |
-|---|---:|---:|---:|
-| Single image · GPT-5.5 | 82.85% | **92.87%** | 9.52% → **1.40%** |
-| Single image · Claude Sonnet 4.6 | 85.75% | **91.43%** | 8.71% → **0.82%** |
-| Multi image · GPT-5.5 | 88.40% | **95.10%** | 9.30% → **2.33%** |
-| Multi image · Claude Sonnet 4.6 | 88.47% | **94.33%** | 10.40% → **4.73%** |
+<div align="center">
+<table>
+  <thead>
+    <tr>
+      <th align="center">Evaluation setting</th>
+      <th align="center">Direct MLLM accuracy</th>
+      <th align="center">SeismicAgent accuracy</th>
+      <th align="center">Hallucination reduction</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td align="center">Single image · GPT-5.5</td>
+      <td align="center">82.85%</td>
+      <td align="center"><strong>92.87%</strong></td>
+      <td align="center">9.52% → <strong>1.40%</strong></td>
+    </tr>
+    <tr>
+      <td align="center">Single image · Claude Sonnet 4.6</td>
+      <td align="center">85.75%</td>
+      <td align="center"><strong>91.43%</strong></td>
+      <td align="center">8.71% → <strong>0.82%</strong></td>
+    </tr>
+    <tr>
+      <td align="center">Multi image · GPT-5.5</td>
+      <td align="center">88.40%</td>
+      <td align="center"><strong>95.10%</strong></td>
+      <td align="center">9.30% → <strong>2.33%</strong></td>
+    </tr>
+    <tr>
+      <td align="center">Multi image · Claude Sonnet 4.6</td>
+      <td align="center">88.47%</td>
+      <td align="center"><strong>94.33%</strong></td>
+      <td align="center">10.40% → <strong>4.73%</strong></td>
+    </tr>
+  </tbody>
+</table>
+</div>
 
 Across both reporting settings, SeismicAgent consistently outperforms the direct MLLM baselines, improving report accuracy by **5.68–10.02 percentage points** for single-image cases and **5.86–6.70 percentage points** for multi-image cases. Hallucination rates decrease in every comparison, indicating that grounding report generation in image-linked specialist evidence helps suppress unsupported statements.
 
