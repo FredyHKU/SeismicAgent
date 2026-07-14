@@ -1,6 +1,6 @@
 <div align="center">
 
-# SeismicAgent
+# SeismicAgent: Multi-Scale Structural Damage Assessment
 
 ### Multi-Agent Large Language Model Framework for Multi-Scale Post-Earthquake Structural Damage Assessment
 
