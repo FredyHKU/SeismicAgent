@@ -12,11 +12,11 @@
 [![Project](https://img.shields.io/badge/Project-SeismicAgent-181717?logo=github)](https://github.com/FredyHKU/SeismicAgent)
 [![Dataset](https://img.shields.io/badge/Dataset-%CE%A6--Net-2C7FB8)](https://apps.peer.berkeley.edu/phi-net/)
 [![Backbone](https://img.shields.io/badge/Vision%20Backbone-ViT--B%2F16-6A5ACD)](#specialist-visual-perception)
-[![Code](https://img.shields.io/badge/Source%20Code-After%20Acceptance-F0AD4E)](#source-code)
+[![Code](https://img.shields.io/badge/Source%20Code-Coming%20Soon-F0AD4E)](#source-code)
 
 **Accurate perception · Scene-adaptive orchestration · Evidence-grounded reporting**
 
-> **Source code will be released once the paper is accepted.**
+> **This repository accompanies a paper under review at the ASCE Journal of Computing in Civil Engineering. The source code is being prepared and will be uploaded here.**
 
 </div>
 
@@ -232,10 +232,10 @@ Across four tested language-model backbones, single-image report accuracy remain
 
 ## Source Code
 
-> [!IMPORTANT]
-> **Source code will be released once the paper is accepted.**
+> [!NOTE]
+> **The source code is being prepared and will be uploaded to this repository.**
 
-This repository currently serves as the project page for the proposed framework, methodology, representative outputs, and key experimental findings.
+This repository serves as the project page for the proposed framework, methodology, representative outputs, and key experimental findings. For requests during the review period, please contact the corresponding author.
 
 ## Dataset
 
